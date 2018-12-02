@@ -1,20 +1,20 @@
 pipeline {
     agent any
-
-    stages {
-        stage('Build') {
+    stages{
+        stage('Build'){
             steps {
                 sh 'mvn clean package'
             }
             post {
-                success{
-                    echo "Now archiving..."
+                success {
+                    echo 'Now Archiving...'
                     archiveArtifacts artifacts: '**/target/*.war'
+                    echo 'Archived'
                 }
             }
         }
-        stage('Deploy to staging'){
-            steps{
+        stage ('Deploy to Staging'){
+            steps {
                 build job: 'deploy-to-staging'
             }
         }
@@ -25,7 +25,7 @@ pipeline {
                     input message:'Approve PRODUCTION Deployment?'
                 }
 
-                build job: 'Deploy-to-Prod'
+                build job: 'deploy-to-Prod'
             }
             post {
                 success {
@@ -37,5 +37,7 @@ pipeline {
                 }
             }
         }
+
+
     }
 }
