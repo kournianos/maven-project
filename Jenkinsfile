@@ -8,8 +8,11 @@ pipeline {
             }
         }
         stage('Test') {
+            environment {
+                AN_ACCESS_KEY = credentials('1fd9acac-5808-4eab-9898-b5eb6e08060e')
+            }
             steps {
-                echo "Testing.. ${env.BUILD_ID}  --  credentials('1fd9acac-5808-4eab-9898-b5eb6e08060e')"
+                sh 'printenv'
             }
         }
         stage('Deploy') {
