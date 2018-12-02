@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo 'Testing.. ${env.BUILD_ID}'
+                echo "Testing.. ${env.BUILD_ID}"
             }
         }
         stage('Deploy') {
