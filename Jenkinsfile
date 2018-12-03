@@ -13,10 +13,18 @@ pipeline {
                 }
             }
         }
+        stage ('Deploy to Staging'){
+            steps {
+                build job: 'deploy-to-staging'
+            }
+        }
         stage('approval'){
             input {
                 message "Should we continue?"
                 ok "Yes, we should."
+            }
+            steps {
+                echo "Hello, nice to meet you."
             }
         }
     }
