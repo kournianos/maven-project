@@ -13,6 +13,10 @@ pipeline {
                 }
             }
         }
-
+        stage('approval'){
+            input{
+                message "Press Ok to continue"
+            }
+        }
     }
 }
