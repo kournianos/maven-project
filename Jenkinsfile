@@ -14,8 +14,10 @@ pipeline {
             }
         }
         stage('approval'){
-            input{
-                message "Press Ok to continue"
+            steps{
+                input{
+                    message "Press Ok to continue"
+                }
             }
         }
     }
