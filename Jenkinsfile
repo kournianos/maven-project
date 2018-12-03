@@ -21,9 +21,7 @@ pipeline {
 
         stage ('Deploy to Production'){
             steps{
-                input {
-                        message "Should we continue?"
-                 }
+                input message: 's', parameters: [choice(choices: ['ok', 'no'], description: '', name: 'ok')]
                 step{
                     build job: 'deploy-to-Prod'
                 }
