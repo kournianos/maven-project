@@ -14,11 +14,16 @@ pipeline {
             }
         }
         stage('approval'){
-            steps {
-                script {
-                    def result = input(id: 'Proceed1', message: 'Was this successful?', parameters: [[$class: 'BooleanParameterDefinition', defaultValue: true, description: '', name: 'Please confirm you agree with this']])
-                    echo 'result: ' + result
+            input {
+                message "Should we continue?"
+                ok "Yes, we should."
+                submitter "alice,bob"
+                parameters {
+                    string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
                 }
+            }
+            steps {
+                echo "Hello, ${PERSON}, nice to meet you."
             }
         }
     }
