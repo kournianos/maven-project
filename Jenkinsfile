@@ -18,13 +18,23 @@ pipeline {
                 build job: 'deploy-to-staging'
             }
         }
-        stage('approval'){
+        stage('Deploy to Prod'){
             input {
                 message "Should we continue?"
                 ok "Yes, we should."
             }
-            steps {
-                echo "Hello, nice to meet you."
+            steps{
+                 build job: 'deploy-to-Prod'
+            }
+
+            post {
+                success {
+                    echo 'Code deployed to Production.'
+                }
+
+                failure {
+                    echo ' Deployment failed.'
+                }
             }
         }
     }
