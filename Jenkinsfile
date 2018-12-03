@@ -20,13 +20,15 @@ pipeline {
         }
 
         stage ('Deploy to Production'){
-              input {
-                message "Should we continue?"
-              }
+            steps{
+                input {
+                        message "Should we continue?"
+                 }
                 step{
                     build job: 'deploy-to-Prod'
                 }
             }
+
             post {
                 success {
                     echo 'Code deployed to Production.'
@@ -37,6 +39,5 @@ pipeline {
                 }
             }
         }
-
-
     }
+}
