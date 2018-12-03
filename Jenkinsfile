@@ -21,15 +21,7 @@ pipeline {
 
         stage ('Deploy to Production'){
             steps{
-                input {
-                  message 'proceed?'
-                  parameters {
-                    choice choices: ['ok', 'no'], description: '', name: ''
-                  }
-                }
-                step{
-                    build job: 'deploy-to-Prod'
-                }
+                 build job: 'deploy-to-Prod'
             }
 
             post {
